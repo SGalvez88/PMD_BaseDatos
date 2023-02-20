@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -61,10 +62,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(getApplicationContext(),"Registro Insertado",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.bBorrar:
+                sqLiteDatabase.execSQL("DELETE FROM pruebas WHERE codigo=1");
+                sqLiteDatabase.delete("pruebas","codigo="+2,null);
+                Toast.makeText(getApplicationContext(),"Regitro Borrado", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.bModificar:
+
+                sqLiteDatabase.execSQL("UPDATE pruebas SET nombre='Intel' WHERE codigo=1");
+
+                ContentValues valores = new ContentValues();
+                valores.put("nombre","AMD");
+                sqLiteDatabase.update("pruebas",valores,"codigo="+2,null);
+                Toast.makeText(getApplicationContext(),"Registro modificado", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.bConsultar:
+
+                Cursor miCursor = sqLiteDatabase.rawQuery("SELECT codigo,nombre FROM pruebas",null);
+                texto.setText("");
+                if(miCursor.moveToFirst()){
+                    do{
+                        String codigo = miCursor.getString(0);
+                        String nombre = miCursor.getString(1);
+                        texto.append(" "+codigo+" - "+nombre+"\n");
+                    }while (miCursor.moveToNext());
+                }
+                miCursor.close();
                 break;
         }
     }
