@@ -54,12 +54,15 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="313dp"
-        android:layout_height="45dp"
+        android:layout_width="333dp"
+        android:layout_height="336dp"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.591"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.758" />
+        app:layout_constraintVertical_bias="0.987" />
 </androidx.constraintlayout.widget.ConstraintLayout>
