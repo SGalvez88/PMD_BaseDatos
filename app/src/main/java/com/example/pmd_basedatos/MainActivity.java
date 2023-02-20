@@ -2,14 +2,17 @@ package com.example.pmd_basedatos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
     private static final String NOMBRE_DB = "pruebaDB.db";
     private static final int VERSION_ACTUAL = 1;
 
@@ -47,6 +50,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.bInsertar:
+
+                sqLiteDatabase.execSQL("INSERT INTO pruebas (codigo,nombre) VALUES(1,'Corsair')");
+
+                ContentValues nuevoRegistro = new ContentValues();
+                nuevoRegistro.put("codigo",2);
+                nuevoRegistro.put("nombre", "GForce");
+                sqLiteDatabase.insert("pruebas",null,nuevoRegistro);
+
+                Toast.makeText(getApplicationContext(),"Registro Insertado",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.bBorrar:
                 break;
